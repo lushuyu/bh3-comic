@@ -775,9 +775,9 @@ const BgmGlobalInfo = {
 };
 
 let AppInfo = {
-    LocalVersion: 1,
+    LocalVersion: 90,
     RemoteVersion: -1,
-    ImageLocal: true,
+    ImageLocal: false,
     AudioLocal: true,
     getVersionString: function () {
         let v = this.LocalVersion
