@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- HTTP 1.1 -->
+    <meta http-equiv="pragma" content="no-cache">
+    <!-- HTTP 1.0 -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="applicable-device" content="mobile">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+    <meta name="content-language" content="zh">
+
+    <title id="page-title">-</title>
+    <link rel="stylesheet" href="../css/viewer.min.css">
+    <link rel="stylesheet" href="../css/ui.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/reader.css">
+    <link rel="stylesheet" href="../css/reader.special.css">
+    <style type="text/css" id="internal-css">
+        .menu-icon {}
+    </style>
+</head>
+
+<body>
+    <div id="home">
+        <div id="home-bg-wrapper">
+            <img src="">
+        </div>
+        <div id="home-content-wrapper">
+            <div class="index-title" id="comic-title">-</div>
+            <div id="home-index-wrapper">
+                <div id="home-index-title">
+                    <div id="home-index-title-banner"></div>
+                    <div id="home-index-title-text">
+                        <div class="comic-date-wrapper">更新时间：<span id="comic-date"></span></div>
+                        <div class="comic-numpage-wrapper">页数：<span id="comic-numpage"></span></div>
+                        <div id="comic-brief"></div>
+                    </div>
+                </div>
+                <input type="checkbox" id="check-1" class="note-check" />
+                <label for="check-1">
+                    <div class="seperator">
+                        <div class="editor-note-title" id="editor-note-title-1">
+                            <div class="editor-note-check">▶</div>
+                            编注
+                        </div>
+                        <div class="role-line"></div>
+                    </div>
+                </label>
+                <div class="editor-note" id="editor-note-1">
+                    <div class="editor-note-content">
+                        -
+                    </div>
+                    <div class="seperator">
+                        <div class="role-line"></div>
+                    </div>
+                </div>
+                <div id="home-index"></div>
+            </div>
+            <div id="home-index-return-wrapper">
+                <a href="index.html" id="home-index-return">
+                    <div id="home-index-btn-return">
+                        <div>
+                            <div class="key-hint-box">
+                                <div>
+                                    <div>~</div>
+                                </div>
+                            </div>
+                            <svg class="return-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                <path d="M30.83 14.83L28 12 16 24l12 12 2.83-2.83L21.66 24z" />
+                            </svg>
+                            <div class="text">
+                                返回
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="gallery-wrapper">
+        <div id="gallery">
+            <ul id="images">
+            </ul>
+        </div>
+    </div>
+    <div id="book-wrapper">
+        <div id="book-container">
+            <div id="book-left-wrapper" class="book-page-wrapper">
+                <div id="book-left-page" class="book-page">
+                    <img id="book-left-img" class="book-img">
+                </div>
+            </div>
+            <div id="book-right-wrapper" class="book-page-wrapper">
+                <div id="book-right-page" class="book-page">
+                    <img id="book-right-img" class="book-img">
+                </div>
+            </div>
+            <div id="book-cross-wrapper">
+                <div id="book-cross-page">
+                    <img id="book-cross-img">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="book-cursor-wrapper">
+        <div id="book-cursor-container">
+            <div id="book-cursor-left" class="book-cursor-wrapper">
+                <div class="book-cursor-place"></div>
+            </div>
+            <div id="book-cursor-middle" class="book-cursor-wrapper">
+            </div>
+            <div id="book-cursor-right" class="book-cursor-wrapper">
+                <div class="book-cursor-place"></div>
+            </div>
+        </div>
+    </div>
+    <div id="footbar-wrapper">
+        <div id="footbar-container">
+            <div id="footbar-bgm-info">　</div>
+            <div id="footbar">
+                <div class="menu-item" id="menu-home">
+                    <div class="menu-title">
+                        <div id="menu-home-text">目录</div>
+                        <div class="key-hint-box">
+                            <div>
+                                <div>~</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item-combo">
+                    <div class="menu-item menu-item-left" id="menu-prev">
+                        <div class="menu-title">
+                            <div id="menu-prev-text">上一话</div>
+                            <div class="key-hint-box">
+                                <div>
+                                    <div>[</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item menu-item-right" id="menu-next">
+                        <div class="menu-title">
+                            <div id="menu-next-text">下一话</div>
+                            <div class="key-hint-box">
+                                <div>
+                                    <div>]</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item-combo">
+                    <div class="menu-item menu-item-left" id="menu-prev-page">
+                        <div class="menu-title">
+                            <div id="menu-prev-page-text">上一页</div>
+                            <div class="key-hint-box">
+                                <div>
+                                    <div>←</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item menu-item-right" id="menu-next-page">
+                        <div class="menu-title">
+                            <div id="menu-next-page-text">下一页</div>
+                            <div class="key-hint-box">
+                                <div>
+                                    <div>→</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item-combo">
+                    <div class="menu-item menu-item-left" id="menu-goto-top">
+                        <div class="menu-title">
+                            <div id="menu-prev-goto-top">到顶部</div>
+                            <div class="key-hint-box">
+                                <div>
+                                    <div>-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-item menu-item-right" id="menu-goto-bottom">
+                        <div class="menu-title">
+                            <div id="menu-next-goto-bottom">到底部</div>
+                            <div class="key-hint-box">
+                                <div>
+                                    <div>=</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-item" id="menu-config">
+                    <div class="menu-title">
+                        <div id="menu-config-text">设置</div>
+                    </div>
+                </div>
+            </div>
+            <div id="version-mark"></div>
+        </div>
+    </div>
+    <div><audio id="voice-player" style="display: none;"></audio></div>
+    <div id="bgm-player-container"></div>
+
+    <div id="menu-config-window">
+        <div class="popup-wrapper">
+            <div id="menu-config-container">
+                <div class="menu-config-header">
+                    <div>
+                        <div id="menu-config-header-text">设置</div>
+                        <div id="menu-config-close"></div>
+                    </div>
+                </div>
+                <div class="menu-config-wrapper">
+                    <div>
+                        <div class="menu-config-text" id="menu-config-mode-text">阅读方向</div>
+                        <div>
+                            <select name="bg-color" id="menu-config-mode">
+                                <option value="0" id="menu-config-mode-1">横向</option>
+                                <option value="1" id="menu-config-mode-2">纵向</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-config-wrapper">
+                    <div>
+                        <div class="menu-config-text" id="menu-config-width-text">图片宽度</div>
+                        <div>
+                            <input type="range" id="menu-config-width" value="50" min="20" max="100" step="5">
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-config-wrapper">
+                    <div>
+                        <div class="menu-config-text" id="menu-config-bg-text">背景颜色</div>
+                        <div>
+                            <select name="bg-color" id="menu-config-bg">
+                                <option value="#fff" id="menu-config-bg-1">白色</option>
+                                <option value="#000" id="menu-config-bg-2">黑色</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-config-wrapper">
+                    <div>
+                        <div class="menu-config-text" id="menu-config-bgm-switch-text">背景音乐开关</div>
+                        <div>
+                            <input type="checkbox" name="bgm-switch" id="menu-config-bgm-switch" checked="1">
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-config-wrapper">
+                    <div>
+                        <div class="menu-config-text" id="menu-config-volume-text">背景音乐音量</div>
+                        <div>
+                            <input type="range" id="menu-config-bgm-volume" value="100" min="0" max="100" step="5">
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-config-wrapper">
+                    <div>
+                        <div class="menu-config-text" id="menu-config-voice-switch-text">显示语音按钮</div>
+                        <div>
+                            <input type="checkbox" name="voice-switch" id="menu-config-voice-switch" checked="1">
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-config-wrapper">
+                    <div>
+                        <div class="menu-config-text" id="menu-config-voice-text">语音音量</div>
+                        <div>
+                            <input type="range" id="menu-config-voice-volume" value="100" min="0" max="100" step="5">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="wallpaper-wrapper" style="display: none;"></div>
+    <div id="debug-wrapper"></div>
+
+    <script src="../js/viewer.min.js"></script>
+    <script src="../js/util.js"></script>
+    <script src="../js/reader.js"></script>
+    <script type="text/javascript">
+        let id = Util.getQueryString("id")
+        if (id) {
+            try {
+                BookScriptEx(Number(id))
+            } catch (error) {
+                let txt = "\<script src=\"..\/js\/" + id + ".js\"\>\<\/script\>"
+                document.writeln(txt)
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- HTTP 1.1 -->
+    <meta http-equiv="pragma" content="no-cache">
+    <!-- HTTP 1.0 -->
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta name="applicable-device" content="mobile">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-status-bar-style" content="black-translucent">
+
+    <title>《崩坏3》漫画</title>
+    <link rel="icon" href="https://comic.bh3.com/favicon.ico">
+    <link rel="stylesheet" href="../css/viewer.min.css">
+    <link rel="stylesheet" href="../css/ui.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/index1.css">
+    <script src="https://gitee.com/Xrysnow/feature-test/raw/master/test.js"></script>
+    <script src="../js/modernizr-custom.js"></script>
+    <script src="../js/echarts.min.js"></script>
+    <script src="../js/viewer.min.js"></script>
+    <script src="../js/marked.min.js"></script>
+</head>
+
+<body>
+    <script src="../js/preload.js"></script>
+    <div id="main-bg">
+        <img>
+    </div>
+    <input type="radio" name="page-select" id="page-select-1" value="1" checked>
+    <input type="radio" name="page-select" id="page-select-2" value="2">
+    <input type="radio" name="page-select" id="page-select-3" value="3">
+    <div class="index-container">
+        <div class="nav">
+            <div class="nav-wrap">
+                <div class="nav-list">
+                    <label for="page-select-1">
+                        <div class="nav-list-item">
+                            <div>
+                                <div>主页</div>
+                            </div>
+                        </div>
+                    </label>
+                    <div class="nav-list-seperator" id="nav-list-seperator-1"></div>
+                    <label for="page-select-2">
+                        <div class="nav-list-item">
+                            <div>
+                                <div>指南</div>
+                            </div>
+                        </div>
+                    </label>
+                    <div class="nav-list-seperator" id="nav-list-seperator-2"></div>
+                    <label for="page-select-3">
+                        <div class="nav-list-item">
+                            <div>
+                                <div>设置</div>
+                            </div>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="comic-list-wrapper">
+            <div class="comic-list"></div>
+            <div class="nav-landscape-padding"></div>
+        </div>
+        <div class="instructions-wrapper">
+            <input type="radio" name="ins-select" id="ins-select-1" value="1" checked>
+            <input type="radio" name="ins-select" id="ins-select-2" value="2">
+            <div class="instructions-page">
+                <div class="ins-nav-wrap">
+                    <div class="ins-nav-list">
+                        <label for="ins-select-1">
+                            <div class="ins-nav-item">
+                                <div>
+                                    <div>剧情关系</div>
+                                </div>
+                            </div>
+                        </label>
+                        <label for="ins-select-2">
+                            <div class="ins-nav-item">
+                                <div>
+                                    <div>相关信息</div>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="ins-nav-line ins-nav-item">
+                        <div>
+                            <div>　</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ins-content-wrapper" id="ins-relation-wrapper">
+                    <div id="ins-relation-content"></div>
+                    <div id="ins-img-wrapper-1">
+                        <img src="../res/img/relations.png">
+                    </div>
+                    <div id="chart-relation-wrapper">
+                        <div id="chart-relation"></div>
+                    </div>
+                    <div class="nav-landscape-padding"></div>
+                </div>
+                <div class="ins-content-wrapper" id="ins-comic-wrapper">
+                    <div id="ins-comic-content"></div>
+                    <div class="nav-landscape-padding"></div>
+                </div>
+            </div>
+        </div>
+        <div class="config-page-wrapper">
+            <div class="config-page">
+                <div id="config-page-container">
+                    <input type="checkbox" id="check-config-about">
+                    <label for="check-config-about">
+                        <div class="menu-config-wrapper config-fold-wrapper">
+                            <div>
+                                <div class="menu-config-text">
+                                    关于
+                                </div>
+                                <div>
+                                    <div class="fold-marker">
+                                        <svg class="fold-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                            <path d="M30.83 14.83L28 12 16 24l12 12 2.83-2.83L21.66 24z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <div class="menu-config-wrapper folded">
+                        <div>
+                            <div id="config-about-wrapper">
+                                <div id="config-about-text"></div>
+                                <a href="https://afdian.net/a/xrysnow" target="_blank">
+                                    <img width="120" src="../res/img/afdian.jpg" alt="" style="border-radius: 6px;">
+                                </a>
+                            </div>
+                            <div style="display: none;"></div>
+                        </div>
+                    </div>
+                    <div class="menu-config-wrapper">
+                        <div>
+                            <div class="menu-config-text" id="menu-config-width-text">
+                                竖版图片宽度
+                            </div>
+                            <div>
+                                <input type="range" id="menu-config-width" value="50" min="20" max="100" step="5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-config-wrapper">
+                        <div>
+                            <div class="menu-config-text" id="menu-config-bg-text">
+                                阅读背景颜色
+                            </div>
+                            <div>
+                                <select name="bg-color" id="menu-config-bg">
+                                    <option value="#fff" id="menu-config-bg-1">白色</option>
+                                    <option value="#000" id="menu-config-bg-2">黑色</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-config-wrapper">
+                        <div>
+                            <div class="menu-config-text" id="menu-config-bgm-switch-text">
+                                背景音乐开关
+                            </div>
+                            <div>
+                                <input type="checkbox" name="bgm-switch" id="menu-config-bgm-switch" checked="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-config-wrapper">
+                        <div>
+                            <div class="menu-config-text" id="menu-config-volume-text">
+                                背景音乐音量
+                            </div>
+                            <div>
+                                <input type="range" id="menu-config-bgm-volume" value="100" min="0" max="100" step="5">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-config-wrapper">
+                        <div>
+                            <div class="menu-config-text" id="menu-config-voice-switch-text">显示语音按钮</div>
+                            <div>
+                                <input type="checkbox" name="voice-switch" id="menu-config-voice-switch" checked="1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="menu-config-wrapper">
+                        <div>
+                            <div class="menu-config-text" id="menu-config-voice-text">
+                                语音音量
+                            </div>
+                            <div>
+                                <input type="range" id="menu-config-voice-volume" value="100" min="0" max="100"
+                                    step="5">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="checkbox" id="check-config-clear">
+                    <label for="check-config-clear">
+                        <div class="menu-config-wrapper config-fold-wrapper">
+                            <div>
+                                <div class="menu-config-text">
+                                    清除本地数据
+                                </div>
+                                <div>
+                                    <div class="fold-marker">
+                                        <svg class="fold-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+                                            <path d="M30.83 14.83L28 12 16 24l12 12 2.83-2.83L21.66 24z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </label>
+                    <div class="menu-config-wrapper folded">
+                        <div>
+                            <div>
+                                <div id="config-clear-text"></div>
+                                <div class="config-button" id="config-clear-button">确认清除</div>
+                            </div>
+                            <div style="display: none;"></div>
+                        </div>
+                    </div>
+                    <div class="nav-landscape-padding"></div>
+                </div>
+            </div>
+        </div>
+        <div id="version-mark"></div>
+    </div>
+    <script src="../js/util.js"></script>
+    <script src="../js/index.js"></script>
+</body>
+
+</html>
