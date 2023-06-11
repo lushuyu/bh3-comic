@@ -104,7 +104,7 @@ const Reader = function (param) {
     let i18nHtml = param.i18nHtml
     let PARAMETER = param
 
-    const DEBUG_MODE = true
+    const DEBUG_MODE = false
     let LOCAL_MODE = false
     let AUDIO_LOCAL_MODE = true
     let VOICE_LANGUAGE = 'zh'
@@ -355,6 +355,10 @@ const Reader = function (param) {
     }
 
     const SetAudioPreload = function (ids) {
+        if (Util.isOnWeb()) {
+            // can cause download dialogue
+            return
+        }
         let old = []
         for (let i = 0; i < document.head.children.length; i++) {
             const e = document.head.children[i]
