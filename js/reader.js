@@ -638,17 +638,22 @@ const Reader = function (param) {
             obj_container.className = 'home-index-container'
             obj_a.className = 'home-index-a'
             obj_a.href = '#'
-            obj_a.onclick = function () {
+            obj_a.onclick = function (ev) {
+                ev.stopPropagation()
                 ToggleHomeIndex(false)
                 GotoChapter(i)
                 let footbar = document.getElementById('footbar-container')
                 if (footbar) {
                     // show footbar once
-                    footbar.style.transform = 'translateY(-100%)'
-                    let hdl = setTimeout(function () {
-                        footbar.style.transform = ''
-                        clearTimeout(hdl)
-                    }, 1000)
+                    if (IS_MOBILE) {
+                        ToggleMenu(true)
+                    } else {
+                        footbar.style.transform = 'translateY(-100%)'
+                        let hdl = setTimeout(function () {
+                            footbar.style.transform = ''
+                            clearTimeout(hdl)
+                        }, 1000)
+                    }
                 }
             }
             obj_text.className = 'home-index-banner'
@@ -861,7 +866,9 @@ const Reader = function (param) {
         SetDebugText('CurrentChapter', CurrentChapter)
         UpdateChapterProgress(idx)
         //
-        ToggleMenu(true)
+        if (!IS_MOBILE) {
+            ToggleMenu(true)
+        }
         ToggleConfig(false)
         ToggleHome(false)
         let bookMode = GetBookMode()
@@ -879,6 +886,16 @@ const Reader = function (param) {
         //
         // console.log('ClearGallery')
         ClearGallery()
+        //
+        let gallery = document.getElementById('gallery-wrapper')
+        let book = document.getElementById('book-wrapper')
+        if (Settings.getVoiceEnabled() && PARAMETER.voiceInfo && PARAMETER.voiceInfo[idx + 1]) {
+            gallery.classList.add('gallery-voice-enabled')
+            book.classList.add('book-voice-enabled')
+        } else {
+            gallery.classList.remove('gallery-voice-enabled')
+            book.classList.remove('book-voice-enabled')
+        }
         //
         let bgmPreload = []
         let addId = function (index) {
@@ -909,12 +926,11 @@ const Reader = function (param) {
     }
 
     const GetBookMode = function () {
-        let bookMode = Settings.getBookMode(PARAMETER.bookIndex)
-        if (!bookMode) {
-            bookMode = PARAMETER.bookMode
-            Settings.setBookMode(PARAMETER.bookIndex, bookMode)
+        let preferred = Settings.getPreferBookMode()
+        if (preferred && PARAMETER.bookMode) {
+            return PARAMETER.bookMode
         }
-        return bookMode
+        return 'none'
     }
 
     const MakeVoiceButtons = function (ichapter, ipage) {
@@ -1009,8 +1025,8 @@ const Reader = function (param) {
             }
             obj_div.innerHTML += '<div class="folded-warning-end">▲' + hintText2 + '▲</div>'
 
-            let obj_hint1 = obj_div.firstChild
-            let obj_hint2 = obj_div.lastChild
+            let obj_hint1 = obj_div.children[0]
+            let obj_hint2 = obj_div.children[obj_div.children.length - 1]
             obj_hint2.style.display = 'none'
             let ToggleHidden = function () {
                 let active = obj_div.children[1].classList.toggle('active')
@@ -1034,8 +1050,11 @@ const Reader = function (param) {
                 ActiveHidden[key] = { active: active, top: hiddenToTop, height: hiddenH }
                 OnScrollChange()
             }
-            obj_hint1.addEventListener("click", ToggleHidden)
-            obj_hint2.addEventListener("click", ToggleHidden)
+            obj_hint1.onclick = function (ev) {
+                ev.stopPropagation()
+                ToggleHidden()
+            }
+            obj_hint2.onclick = obj_hint1.onclick
             return obj_div
         }
         for (let i = 0; i < num_page; i++) {
@@ -1496,7 +1515,7 @@ const Reader = function (param) {
             if (!e.href) {
                 for (let j = 0; j < e.cssRules.length; j++) {
                     const rule = e.cssRules[j]
-                    if (rule.selectorText == '.menu-icon' && !IS_MOBILE) {
+                    if (rule.selectorText == '.menu-icon') {
                         rule.style.fill = icon_color
                         break
                     }
@@ -1553,6 +1572,9 @@ const Reader = function (param) {
         document.body.onclick = function (ev) {
             ToggleConfig(false)
             ToggleBGMPlayer(false)
+            if (IS_MOBILE && CurrentChapter >= 0) {
+                ToggleMenu(!ShowMenu)
+            }
         }
         document.getElementById('menu-config-close').onclick = function (ev) {
             ev.stopPropagation()
@@ -1586,7 +1608,7 @@ const Reader = function (param) {
             }
             SetMenuBookModeText(target)
             width_container.style.display = target == 'none' ? 'block' : 'none'
-            Settings.setBookMode(PARAMETER.bookIndex, target)
+            Settings.setPreferBookMode(target != 'none')
             GotoChapter(CurrentChapter)
         }
         // gallery width
@@ -1651,7 +1673,7 @@ const Reader = function (param) {
             Settings.setVoiceEnabled(voice_switch.checked)
             let gallery = document.getElementById('gallery-wrapper')
             let book = document.getElementById('book-wrapper')
-            if (voice_switch.checked && PARAMETER.voiceInfo) {
+            if (voice_switch.checked && PARAMETER.voiceInfo && PARAMETER.voiceInfo[CurrentChapter + 1]) {
                 gallery.classList.add('gallery-voice-enabled')
                 book.classList.add('book-voice-enabled')
             } else {
